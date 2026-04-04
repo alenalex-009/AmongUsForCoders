@@ -1,0 +1,210 @@
+[
+  {
+    "id": "two_sum",
+    "difficulty": "easy",
+    "title": "Fix Two Sum",
+    "description": "Find two indices such that nums[i] + nums[j] = target.",
+    "buggyCode": {
+      "javascript": "function twoSum(nums, target) {\n  for (let i = 0; i < nums.length; i++) {\n    for (let j = i; j < nums.length; j++) {\n      if (nums[i] + nums[j] === target) return [i, j];\n    }\n  }\n  return [];\n}",
+      "python": "def twoSum(nums, target):\n    for i in range(len(nums)):\n        for j in range(i, len(nums)):\n            if nums[i] + nums[j] == target:\n                return [i, j]\n    return []",
+      "cpp": "vector<int> twoSum(vector<int>& nums, int target) {\n    for (int i = 0; i < nums.size(); i++) {\n        for (int j = i; j < nums.size(); j++) {\n            if (nums[i] + nums[j] == target) return {i, j};\n        }\n    }\n    return {};\n}",
+      "java": "int[] twoSum(int[] nums, int target) {\n    for (int i = 0; i < nums.length; i++) {\n        for (int j = i; j < nums.length; j++) {\n            if (nums[i] + nums[j] == target) return new int[]{i, j};\n        }\n    }\n    return new int[]{};\n}"
+    },
+    "expectedFix": {
+      "javascript": "function twoSum(nums, target) {\n  for (let i = 0; i < nums.length; i++) {\n    for (let j = i + 1; j < nums.length; j++) {\n      if (nums[i] + nums[j] === target) return [i, j];\n    }\n  }\n  return [];\n}",
+      "python": "def twoSum(nums, target):\n    for i in range(len(nums)):\n        for j in range(i + 1, len(nums)):\n            if nums[i] + nums[j] == target:\n                return [i, j]\n    return []",
+      "cpp": "vector<int> twoSum(vector<int>& nums, int target) {\n    for (int i = 0; i < nums.size(); i++) {\n        for (int j = i + 1; j < nums.size(); j++) {\n            if (nums[i] + nums[j] == target) return {i, j};\n        }\n    }\n    return {};\n}",
+      "java": "int[] twoSum(int[] nums, int target) {\n    for (int i = 0; i < nums.length; i++) {\n        for (int j = i + 1; j < nums.length; j++) {\n            if (nums[i] + nums[j] == target) return new int[]{i, j};\n        }\n    }\n    return new int[]{};\n}"
+    },
+    "imposterObjective": "Always return empty",
+    "imposterExpectedFix": {
+      "javascript": "function twoSum() {\n  return [];\n}",
+      "python": "def twoSum(nums, target): return []",
+      "cpp": "vector<int> twoSum(vector<int>& nums, int target) {\n    return {};\n}",
+      "java": "int[] twoSum(int[] nums, int target) {\n    return new int[]{};\n}"
+    },
+    "crewmateObjective": "Your Objective: Find two indices such that nums[i] + nums[j] = target."
+  },
+  {
+    "id": "valid_parentheses",
+    "difficulty": "easy",
+    "title": "Fix Valid Parentheses",
+    "description": "Check if parentheses string is valid.",
+    "buggyCode": {
+      "javascript": "function isValid(s) {\n  let stack = [];\n  for (let c of s) {\n    if (c === ')') {\n      if (stack.pop() !== '(') return false;\n    } else stack.push(c);\n  }\n  return true;\n}",
+      "python": "def isValid(s):\n    stack = []\n    for c in s:\n        if c == ')':\n            if stack.pop() != '(':\n                return False\n        else:\n            stack.append(c)\n    return True",
+      "cpp": "bool isValid(string s) {\n    stack<char> st;\n    for (char c : s) {\n        if (c == ')') {\n            if (st.top() != '(') return false;\n            st.pop();\n        } else st.push(c);\n    }\n    return true;\n}",
+      "java": "boolean isValid(String s) {\n    Stack<Character> st = new Stack<>();\n    for (char c : s.toCharArray()) {\n        if (c == ')') {\n            if (st.pop() != '(') return false;\n        } else st.push(c);\n    }\n    return true;\n}"
+    },
+    "expectedFix": {
+      "javascript": "function isValid(s) {\n  let stack = [];\n  let m = { ')': '(', ']': '[', '}': '{' };\n  for (let c of s) {\n    if (c in m) {\n      if (!stack.length || stack.pop() != m[c]) return false;\n    } else stack.push(c);\n  }\n  return stack.length === 0;\n}",
+      "python": "def isValid(s):\n    stack = []\n    m = {')': '(', ']': '[', '}': '{'}\n    for c in s:\n        if c in m:\n            if not stack or stack.pop() != m[c]:\n                return False\n        else:\n            stack.append(c)\n    return not stack",
+      "cpp": "bool isValid(string s) {\n    stack<char> st;\n    unordered_map<char, char> m = {{')', '('}, {']', '['}, {'}', '{'}};\n    for (char c : s) {\n        if (m.count(c)) {\n            if (st.empty() || st.top() != m[c]) return false;\n            st.pop();\n        } else st.push(c);\n    }\n    return st.empty();\n}",
+      "java": "boolean isValid(String s) {\n    Stack<Character> st = new Stack<>();\n    Map<Character, Character> m = Map.of(')', '(', ']', '[', '}', '{');\n    for (char c : s.toCharArray()) {\n        if (m.containsKey(c)) {\n            if (st.isEmpty() || st.pop() != m.get(c)) return false;\n        } else st.push(c);\n    }\n    return st.isEmpty();\n}"
+    },
+    "imposterObjective": "Always return true",
+    "imposterExpectedFix": {
+      "javascript": "function isValid() {\n  return true;\n}",
+      "python": "def isValid(s): return True",
+      "cpp": "bool isValid(string s) {\n    return true;\n}",
+      "java": "boolean isValid(String s) {\n    return true;\n}"
+    },
+    "crewmateObjective": "Your Objective: Check if parentheses string is valid."
+  },
+  {
+    "id": "maximum_subarray",
+    "difficulty": "easy",
+    "title": "Fix Maximum Subarray",
+    "description": "Find maximum subarray sum.",
+    "buggyCode": {
+      "javascript": "function maxSubArray(nums) {\n  let sum = 0,\n    max = 0;\n  for (let n of nums) {\n    sum += n;\n    max = Math.max(max, sum);\n  }\n  return max;\n}",
+      "python": "def maxSubArray(nums):\n    s = 0\n    m = 0\n    for n in nums:\n        s += n\n        m = max(m, s)\n    return m",
+      "cpp": "int maxSubArray(vector<int>& nums) {\n    int sum = 0, m = 0;\n    for (int n : nums) {\n        sum += n;\n        m = max(m, sum);\n    }\n    return m;\n}",
+      "java": "int maxSubArray(int[] nums) {\n    int sum = 0, max = 0;\n    for (int n : nums) {\n        sum += n;\n        max = Math.max(max, sum);\n    }\n    return max;\n}"
+    },
+    "expectedFix": {
+      "javascript": "function maxSubArray(nums) {\n  let cur = nums[0],\n    res = nums[0];\n  for (let i = 1; i < nums.length; i++) {\n    cur = Math.max(nums[i], cur + nums[i]);\n    res = Math.max(res, cur);\n  }\n  return res;\n}",
+      "python": "def maxSubArray(nums):\n    cur = res = nums[0]\n    for n in nums[1:]:\n        cur = max(n, cur + n)\n        res = max(res, cur)\n    return res",
+      "cpp": "int maxSubArray(vector<int>& nums) {\n    int cur = nums[0], res = nums[0];\n    for (int i = 1; i < nums.size(); i++) {\n        cur = max(nums[i], cur + nums[i]);\n        res = max(res, cur);\n    }\n    return res;\n}",
+      "java": "int maxSubArray(int[] nums) {\n    int cur = nums[0], res = nums[0];\n    for (int i = 1; i < nums.length; i++) {\n        cur = Math.max(nums[i], cur + nums[i]);\n        res = Math.max(res, cur);\n    }\n    return res;\n}"
+    },
+    "imposterObjective": "Always return 0",
+    "imposterExpectedFix": {
+      "javascript": "function maxSubArray() {\n  return 0;\n}",
+      "python": "def maxSubArray(nums): return 0",
+      "cpp": "int maxSubArray(vector<int>& nums) {\n    return 0;\n}",
+      "java": "int maxSubArray(int[] nums) {\n    return 0;\n}"
+    },
+    "crewmateObjective": "Your Objective: Find maximum subarray sum."
+  },
+  {
+    "id": "contains_duplicate",
+    "difficulty": "easy",
+    "title": "Fix Contains Duplicate",
+    "description": "Check if array contains duplicates.",
+    "buggyCode": {
+      "javascript": "function containsDuplicate(nums) {\n  return false;\n}",
+      "python": "def containsDuplicate(nums):\n    return False",
+      "cpp": "bool containsDuplicate(vector<int>& nums) {\n    return false;\n}",
+      "java": "boolean containsDuplicate(int[] nums) {\n    return false;\n}"
+    },
+    "expectedFix": {
+      "javascript": "function containsDuplicate(nums) {\n  return new Set(nums).size !== nums.length;\n}",
+      "python": "def containsDuplicate(nums):\n    return len(nums) != len(set(nums))",
+      "cpp": "bool containsDuplicate(vector<int>& nums) {\n    return set<int>(nums.begin(), nums.end()).size() != nums.size();\n}",
+      "java": "boolean containsDuplicate(int[] nums) {\n    return new HashSet<>(Arrays.stream(nums).boxed().toList()).size() != nums.length;\n}"
+    },
+    "imposterObjective": "Always return false",
+    "imposterExpectedFix": {
+      "javascript": "function containsDuplicate() {\n  return false;\n}",
+      "python": "def containsDuplicate(nums): return False",
+      "cpp": "bool containsDuplicate(vector<int>& nums) {\n    return false;\n}",
+      "java": "boolean containsDuplicate(int[] nums) {\n    return false;\n}"
+    },
+    "crewmateObjective": "Your Objective: Check if array contains duplicates."
+  },
+  {
+    "id": "best_time_stock",
+    "difficulty": "easy",
+    "title": "Fix Best Time to Buy and Sell Stock",
+    "description": "Find maximum profit from stock prices.",
+    "buggyCode": {
+      "javascript": "function maxProfit(p) {\n  let profit = 0;\n  for (let i = 0; i < p.length; i++) {\n    for (let j = i + 1; j < p.length; j++) {\n      profit = Math.max(profit, p[j] - p[i]);\n    }\n  }\n  return profit;\n}",
+      "python": "def maxProfit(p):\n    profit = 0\n    for i in range(len(p)):\n        for j in range(i + 1, len(p)):\n            profit = max(profit, p[j] - p[i])\n    return profit",
+      "cpp": "int maxProfit(vector<int>& p) {\n    int profit = 0;\n    for (int i = 0; i < p.size(); i++) {\n        for (int j = i + 1; j < p.size(); j++) {\n            profit = max(profit, p[j] - p[i]);\n        }\n    }\n    return profit;\n}",
+      "java": "int maxProfit(int[] p) {\n    int profit = 0;\n    for (int i = 0; i < p.length; i++) {\n        for (int j = i + 1; j < p.length; j++) {\n            profit = Math.max(profit, p[j] - p[i]);\n        }\n    }\n    return profit;\n}"
+    },
+    "expectedFix": {
+      "javascript": "function maxProfit(p) {\n  let min = Infinity,\n    profit = 0;\n  for (let price of p) {\n    min = Math.min(min, price);\n    profit = Math.max(profit, price - min);\n  }\n  return profit;\n}",
+      "python": "def maxProfit(p):\n    minp = float('inf')\n    profit = 0\n    for price in p:\n        minp = min(minp, price)\n        profit = max(profit, price - minp)\n    return profit",
+      "cpp": "int maxProfit(vector<int>& p) {\n    int minp = INT_MAX, profit = 0;\n    for (int price : p) {\n        minp = min(minp, price);\n        profit = max(profit, price - minp);\n    }\n    return profit;\n}",
+      "java": "int maxProfit(int[] p) {\n    int min = Integer.MAX_VALUE, profit = 0;\n    for (int price : p) {\n        min = Math.min(min, price);\n        profit = Math.max(profit, price - min);\n    }\n    return profit;\n}"
+    },
+    "imposterObjective": "Always return 0",
+    "imposterExpectedFix": {
+      "javascript": "function maxProfit() {\n  return 0;\n}",
+      "python": "def maxProfit(p): return 0",
+      "cpp": "int maxProfit(vector<int>& p) {\n    return 0;\n}",
+      "java": "int maxProfit(int[] p) {\n    return 0;\n}"
+    },
+    "crewmateObjective": "Your Objective: Find maximum profit from stock prices."
+  },
+  {
+    "id": "valid_anagram",
+    "difficulty": "easy",
+    "title": "Fix Valid Anagram",
+    "description": "Check if two strings are anagrams.",
+    "buggyCode": {
+      "javascript": "function isAnagram(s, t) {\n  return new Set(s) === new Set(t);\n}",
+      "python": "def isAnagram(s, t):\n    return set(s) == set(t)",
+      "cpp": "bool isAnagram(string s, string t) {\n    return set<char>(s.begin(), s.end()) == set<char>(t.begin(), t.end());\n}",
+      "java": "boolean isAnagram(String s, String t) {\n    return new HashSet<>(Arrays.asList(s.split(\"\"))).equals(new HashSet<>(Arrays.asList(t.split(\"\"))));\n}"
+    },
+    "expectedFix": {
+      "javascript": "function isAnagram(s, t) {\n  return s.split('').sort().join('') === t.split('').sort().join('');\n}",
+      "python": "def isAnagram(s, t):\n    return sorted(s) == sorted(t)",
+      "cpp": "bool isAnagram(string s, string t) {\n    sort(s.begin(), s.end());\n    sort(t.begin(), t.end());\n    return s == t;\n}",
+      "java": "boolean isAnagram(String s, String t) {\n    char[] a = s.toCharArray();\n    char[] b = t.toCharArray();\n    Arrays.sort(a);\n    Arrays.sort(b);\n    return Arrays.equals(a, b);\n}"
+    },
+    "imposterObjective": "Always return true",
+    "imposterExpectedFix": {
+      "javascript": "function isAnagram() {\n  return true;\n}",
+      "python": "def isAnagram(s, t): return True",
+      "cpp": "bool isAnagram(string s, string t) {\n    return true;\n}",
+      "java": "boolean isAnagram(String s, String t) {\n    return true;\n}"
+    },
+    "crewmateObjective": "Your Objective: Check if two strings are anagrams."
+  },
+  {
+    "id": "binary_search",
+    "difficulty": "easy",
+    "title": "Fix Binary Search",
+    "description": "Search target in sorted array.",
+    "buggyCode": {
+      "javascript": "function search(nums, target) {\n  for (let i = 0; i < nums.length; i++) {\n    if (nums[i] === target) return i;\n  }\n  return 0;\n}",
+      "python": "def search(nums, target):\n    for i in range(len(nums)):\n        if nums[i] == target:\n            return i\n    return 0",
+      "cpp": "int search(vector<int>& nums, int target) {\n    for (int i = 0; i < nums.size(); i++) {\n        if (nums[i] == target) return i;\n    }\n    return 0;\n}",
+      "java": "int search(int[] nums, int target) {\n    for (int i = 0; i < nums.length; i++) {\n        if (nums[i] == target) return i;\n    }\n    return 0;\n}"
+    },
+    "expectedFix": {
+      "javascript": "function search(nums, target) {\n  let l = 0,\n    r = nums.length - 1;\n  while (l <= r) {\n    let m = Math.floor((l + r) / 2);\n    if (nums[m] === target) return m;\n    else if (nums[m] < target) l = m + 1;\n    else r = m - 1;\n  }\n  return -1;\n}",
+      "python": "def search(nums, target):\n    l, r = 0, len(nums) - 1\n    while l <= r:\n        m = (l + r) // 2\n        if nums[m] == target: return m\n        elif nums[m] < target: l = m + 1\n        else: r = m - 1\n    return -1",
+      "cpp": "int search(vector<int>& nums, int target) {\n    int l = 0, r = nums.size() - 1;\n    while (l <= r) {\n        int m = (l + r) / 2;\n        if (nums[m] == target) return m;\n        else if (nums[m] < target) l = m + 1;\n        else r = m - 1;\n    }\n    return -1;\n}",
+      "java": "int search(int[] nums, int target) {\n    int l = 0, r = nums.length - 1;\n    while (l <= r) {\n        int m = (l + r) / 2;\n        if (nums[m] == target) return m;\n        else if (nums[m] < target) l = m + 1;\n        else r = m - 1;\n    }\n    return -1;\n}"
+    },
+    "imposterObjective": "Always return -1",
+    "imposterExpectedFix": {
+      "javascript": "function search() {\n  return -1;\n}",
+      "python": "def search(nums, target): return -1",
+      "cpp": "int search(vector<int>& nums, int target) {\n    return -1;\n}",
+      "java": "int search(int[] nums, int target) {\n    return -1;\n}"
+    },
+    "crewmateObjective": "Your Objective: Search target in sorted array."
+  },
+  {
+    "id": "climbing_stairs",
+    "difficulty": "easy",
+    "title": "Fix Climbing Stairs",
+    "description": "Count ways to climb stairs.",
+    "buggyCode": {
+      "javascript": "function climbStairs(n) {\n  if (n <= 2) return n;\n  return climbStairs(n - 1) + climbStairs(n - 2);\n}",
+      "python": "def climbStairs(n):\n    if n <= 2: return n\n    return climbStairs(n - 1) + climbStairs(n - 2)",
+      "cpp": "int climbStairs(int n) {\n    if (n <= 2) return n;\n    return climbStairs(n - 1) + climbStairs(n - 2);\n}",
+      "java": "int climbStairs(int n) {\n    if (n <= 2) return n;\n    return climbStairs(n - 1) + climbStairs(n - 2);\n}"
+    },
+    "expectedFix": {
+      "javascript": "function climbStairs(n) {\n  let a = 1,\n    b = 1;\n  for (let i = 0; i < n; i++) {\n    [a, b] = [b, a + b];\n  }\n  return a;\n}",
+      "python": "def climbStairs(n):\n    a, b = 1, 1\n    for _ in range(n):\n        a, b = b, a + b\n    return a",
+      "cpp": "int climbStairs(int n) {\n    int a = 1, b = 1;\n    for (int i = 0; i < n; i++) {\n        int t = a;\n        a = b;\n        b = t + b;\n    }\n    return a;\n}",
+      "java": "int climbStairs(int n) {\n    int a = 1, b = 1;\n    for (int i = 0; i < n; i++) {\n        int t = a;\n        a = b;\n        b = t + b;\n    }\n    return a;\n}"
+    },
+    "imposterObjective": "Always return 1",
+    "imposterExpectedFix": {
+      "javascript": "function climbStairs() {\n  return 1;\n}",
+      "python": "def climbStairs(n): return 1",
+      "cpp": "int climbStairs(int n) {\n    return 1;\n}",
+      "java": "int climbStairs(int n) {\n    return 1;\n}"
+    },
+    "crewmateObjective": "Your Objective: Count ways to climb stairs."
+  }
+]

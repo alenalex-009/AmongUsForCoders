@@ -1,0 +1,31 @@
+{
+  "a": {
+    "username": "A",
+    "password": "Pass@123",
+    "analytics": {
+      "gamesWon": 0,
+      "roleWins": {
+        "crewmate": 0,
+        "imposter": 0
+      },
+      "taskTimes": {
+        "easy": {
+          "count": 0,
+          "totalMs": 0
+        },
+        "medium": {
+          "count": 0,
+          "totalMs": 0
+        },
+        "hard": {
+          "count": 0,
+          "totalMs": 0
+        }
+      }
+    }
+  },
+  "b": {
+    "username": "B",
+    "password": "Pass@123"
+  }
+}
