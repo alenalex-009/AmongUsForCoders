@@ -130,7 +130,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
     cors: {
-        origin: "https://amongusforcoders-1.onrender.com", // later restrict to frontend URL
+        origin: "*", // later restrict to frontend URL
         methods: ["GET", "POST"]
     }
 });
